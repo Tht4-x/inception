@@ -41,4 +41,12 @@ else
     echo "WordPress already installed, skipping..."
 fi
 
+if ! wp plugin is-installed redis-cache --path=${WP_PATH} --allow-root; then
+    wp plugin install redis-cache --activate --path=${WP_PATH} --allow-root
+    wp config set WP_REDIS_HOST redis --path=${WP_PATH} --allow-root
+    wp config set WP_REDIS_PORT 6379 --path=${WP_PATH} --allow-root
+    wp redis enable --path=${WP_PATH} --allow-root
+    echo "Redis cache enabled!"
+fi
+
 exec php-fpm8.2 -F

@@ -39,6 +39,7 @@ services:
       - WP_USER_EMAIL=${WP_USER_EMAIL}
     depends_on:
       - mariadb
+      - redis
     restart: unless-stopped
 
   nginx:
@@ -50,6 +51,51 @@ services:
       - wp_volume:/var/www/wordpress
     networks:
       - inception_network
+    depends_on:
+      - wordpress
+    restart: unless-stopped
+
+  static:
+    build: ./requirements/bonus/static
+    container_name: static
+    ports:
+      - "80:80"
+    networks:
+      - inception_network
+    restart: unless-stopped
+
+  adminer:
+    build: ./requirements/bonus/adminer
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - inception_network
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+  redis:
+    build: ./requirements/bonus/redis
+    container_name: redis
+    networks:
+      - inception_network
+    restart: unless-stopped
+
+  ftp:
+    build: ./requirements/bonus/ftp
+    container_name: ftp
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    volumes:
+      - wp_volume:/var/www/wordpress
+    networks:
+      - inception_network
+    secrets:
+      - ftp_password
+    environment:
+      - FTP_USER=dancel
     depends_on:
       - wordpress
     restart: unless-stopped
@@ -82,3 +128,5 @@ secrets:
     file: ../secrets/wp_admin_password.txt
   wp_user_password:
     file: ../secrets/wp_user_password.txt
+  ftp_password:
+    file: ../secrets/ftp_password.txt

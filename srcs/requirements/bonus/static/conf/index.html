@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dancel — 42 Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 1rem;
+            color: #00ff88;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            letter-spacing: 0.3rem;
+            color: #888888;
+            margin-bottom: 3rem;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            border: 1px solid #00ff88;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: #00ff8820;
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            color: #aaaaaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .footer {
+            color: #444444;
+            font-size: 0.8rem;
+            letter-spacing: 0.2rem;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>dancel</h1>
+        <h2>42 STUDENT <span class="cursor">_</span></h2>
+
+        <div class="projects">
+            <div class="card">
+                <h3>Inception</h3>
+                <p>Docker infrastructure with NGINX, WordPress and MariaDB running in separate containers.</p>
+            </div>
+            <div class="card">
+                <h3>42 School</h3>
+                <p>Student at 42 Mulhouse learning system administration, algorithms and software development.</p>
+            </div>
+            <div class="card">
+                <h3>Contact</h3>
+                <p>dancel@student.42.fr</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            BUILT WITH HTML & CSS — HOSTED ON DOCKER
+        </div>
+    </div>
+</body>
+</html>
