@@ -100,6 +100,23 @@ services:
       - wordpress
     restart: unless-stopped
 
+  netdata:
+    build: ./requirements/bonus/netdata
+    container_name: netdata
+    ports:
+      - "19999:19999"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - inception_network
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+
 volumes:
   db_volume:
     driver: local

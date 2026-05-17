@@ -4,6 +4,9 @@ RUN apt-get update && apt-get install -y \
     vsftpd \
     && rm -rf /var/lib/apt/lists/*
 
+# Créer le dossier requis par vsftpd
+RUN mkdir -p /var/run/vsftpd/empty
+
 RUN mkdir -p /etc/vsftpd
 
 COPY conf/vsftpd.conf /etc/vsftpd/vsftpd.conf

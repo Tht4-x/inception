@@ -2,11 +2,18 @@
 
 ## What is this project?
 
-Inception is a web infrastructure running three services inside Docker containers:
+Inception is a project that uses Docker to set up a small infrastructure composed of different services. The entire project runs inside a virtual machine using Docker Compose.
 
-- **NGINX** — the web server, handles secure HTTPS connections
-- **WordPress** — the website and content management system
-- **MariaDB** — the database storing all WordPress content
+It runs three services inside Docker containers:
+
+- NGINX — handles HTTPS on port 443 with TLSv1.2/1.3
+- WordPress + php-fpm — the Content Management System, runs PHP on port 9000
+- MariaDB — the database, stores WordPress data on port 3306
+- Redis — object cache for WordPress, improves performance
+- FTP — file transfer server pointing to the WordPress volume
+- Static website — presentation site (HTML/CSS) on port 80
+- Adminer — web interface to manage MariaDB on port 8080
+- Netdata — real-time monitoring dashboard for all containers on port 19999
 
 All services communicate through a private Docker network. The only way to
 access the infrastructure from outside is through NGINX on port 443 (HTTPS).
@@ -14,39 +21,21 @@ access the infrastructure from outside is through NGINX on port 443 (HTTPS).
 Internet → NGINX (port 443) → WordPress → MariaDB
 
 
----
-
 ## Starting and stopping the project
 
 ### Start the project
 
-```bash
 cd ~/inception
 make
-```
 
 This command builds the Docker images and starts all three containers.
-Wait about 30 seconds for everything to initialize.
 
 ### Stop the project
 
-```bash
 make down
-```
 
-Stops all containers without deleting data. You can restart with `make` and
-everything will still be there.
+Stops all containers without deleting data.
 
-### Full clean (deletes all data)
-
-```bash
-make fclean
-```
-
-⚠️ Warning — this deletes all containers, images, and data including the
-WordPress database and files. Only use this if you want to start from scratch.
-
----
 
 ## Accessing the website
 
@@ -64,49 +53,21 @@ Click "Advanced" then "Accept the risk and continue" to proceed.
 
 https://dancel.42.fr/wp-admin
 
+### Bonus WebSite
 
----
+http://dancel.42.fr
+
 
 ## Credentials
 
-### WordPress administrator
+Locate in inception/secrets
 
-| Field | Value |
-|---|---|
-| Username | dancel_admin |
-| Password | stored in `secrets/wp_admin_password.txt` |
-| Email | dancel@student.42.fr |
-| Role | Administrator |
-
-### WordPress user
-
-| Field | Value |
-|---|---|
-| Username | dancel |
-| Password | stored in `secrets/wp_user_password.txt` |
-| Email | dancel_user@student.42.fr |
-| Role | Author |
-
-### Database
-
-| Field | Value |
-|---|---|
-| Database name | wordpress |
-| User | wpuser |
-| Password | stored in `secrets/db_password.txt` |
-| Root password | stored in `secrets/db_root_password.txt` |
-
-⚠️ Never share or commit the `secrets/` folder to Git.
-
----
 
 ## Checking that services are running
 
 ### See all running containers
 
-```bash
 docker ps
-```
 
 You should see three containers running:
 
@@ -118,56 +79,23 @@ mariadb     Up X minutes
 
 ### Check a specific service
 
-```bash
 docker logs nginx
 docker logs wordpress
 docker logs mariadb
-```
 
 ### Check WordPress users
 
-```bash
 docker exec -it wordpress wp user list --path=/var/www/wordpress --allow-root
-```
 
 ### Test the website from the command line
 
-```bash
 curl -k https://dancel.42.fr
-```
 
 You should see HTML output from WordPress.
 
----
-
-## What happens if a service crashes?
-
-All containers are configured with `restart: unless-stopped`. This means if a
-container crashes unexpectedly, Docker will automatically restart it.
-
-You can verify this behavior:
-
-```bash
-# Simulate a crash
-docker kill --signal=SIGSEGV mariadb
-
-# Wait 5 seconds
-sleep 5
-
-# Check that it restarted automatically
-docker ps
-```
-
----
 
 ## Where is the data stored?
 
-All persistent data is stored on the host machine at:
+All persistent data is stored on the host machine at /home/dancel/data/
 
-/home/dancel/data/
-├── db/         → MariaDB database files
-└── wordpress/  → WordPress website files
-
-
-This means your data survives container restarts and rebuilds (unless you
-run `make fclean`).
+This means your data survives container restarts and rebuilds

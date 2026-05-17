@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dancel — 42 Portfolio</title>
+    <title>Dancel Flour Co. — Premium Wheat Flour</title>
     <style>
         * {
             margin: 0;
@@ -12,103 +12,442 @@
         }
 
         body {
-            background-color: #0a0a0a;
-            color: #ffffff;
-            font-family: 'Courier New', monospace;
+            background-color: #faf8f3;
+            color: #2c2c2c;
+            font-family: 'Georgia', serif;
             min-height: 100vh;
+        }
+
+        nav {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            padding: 1.5rem 4rem;
+            background-color: #ffffff;
+            border-bottom: 3px solid #c8a400;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .container {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        h1 {
-            font-size: 4rem;
-            letter-spacing: 0.5rem;
-            margin-bottom: 1rem;
-            color: #00ff88;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-            letter-spacing: 0.3rem;
-            color: #888888;
-            margin-bottom: 3rem;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .card {
-            border: 1px solid #00ff88;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            background-color: #00ff8820;
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            color: #00ff88;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .card p {
-            color: #aaaaaa;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .footer {
-            color: #444444;
-            font-size: 0.8rem;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c2c2c;
             letter-spacing: 0.2rem;
         }
 
-        .cursor {
-            animation: blink 1s infinite;
+        .logo span {
+            color: #c8a400;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c8a400;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f5f0e0 0%, #ede8d0 100%);
+            padding: 6rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e0d8c0;
+        }
+
+        .hero-text {
+            max-width: 550px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: #2c2c2c;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 span {
+            color: #c8a400;
+        }
+
+        .hero-text p {
+            color: #666666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: #c8a400;
+            color: #ffffff;
+            padding: 1rem 2.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.2rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #2c2c2c;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            font-size: 12rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            background-color: #2c2c2c;
+        }
+
+        .stat {
+            text-align: center;
+            color: #ffffff;
+            padding: 2.5rem 4rem;
+            border-right: 1px solid #444444;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #c8a400;
+            display: block;
+        }
+
+        .stat .label {
+            font-size: 0.8rem;
+            letter-spacing: 0.2rem;
+            color: #aaaaaa;
+            margin-top: 0.3rem;
+        }
+
+        .section {
+            padding: 5rem 4rem;
+            text-align: center;
+            background-color: #faf8f3;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c2c2c;
+            letter-spacing: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section .subtitle {
+            color: #999999;
+            font-style: italic;
+            margin-bottom: 3rem;
+            font-size: 1rem;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .product {
+            border: 1px solid #e0d8c0;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s;
+            background-color: #ffffff;
+        }
+
+        .product:hover {
+            border-color: #c8a400;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(200,164,0,0.1);
+        }
+
+        .product .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .product h3 {
+            color: #2c2c2c;
+            font-size: 1.1rem;
+            letter-spacing: 0.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .product p {
+            color: #888888;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .product .badge {
+            background-color: #c8a400;
+            color: #ffffff;
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15rem;
+        }
+
+        .about {
+            background-color: #2c2c2c;
+            padding: 5rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6rem;
+            text-align: left;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: #c8a400;
+            letter-spacing: 0.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: #aaaaaa;
+            line-height: 1.8;
+            max-width: 500px;
+            margin-bottom: 1rem;
+        }
+
+        .about-image {
+            font-size: 8rem;
+        }
+
+        .testimonials {
+            padding: 5rem 4rem;
+            text-align: center;
+            background-color: #f0ece0;
+        }
+
+        .testimonials h2 {
+            font-size: 2rem;
+            color: #2c2c2c;
+            letter-spacing: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonials .subtitle {
+            color: #999999;
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+
+        .quotes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .quote {
+            background-color: #ffffff;
+            padding: 2rem;
+            text-align: left;
+            border-bottom: 3px solid #c8a400;
+        }
+
+        .quote p {
+            color: #555555;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .quote .author {
+            color: #c8a400;
+            font-size: 0.85rem;
+            letter-spacing: 0.1rem;
+            font-weight: bold;
+        }
+
+        .quote .role {
+            color: #aaaaaa;
+            font-size: 0.75rem;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            padding: 3rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid #c8a400;
+        }
+
+        footer .logo {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        footer p {
+            color: #555555;
+            font-size: 0.8rem;
+            letter-spacing: 0.1rem;
+        }
+
+        footer .contact {
+            color: #aaaaaa;
+            font-size: 0.85rem;
+            text-align: right;
+            line-height: 1.8;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>dancel</h1>
-        <h2>42 STUDENT <span class="cursor">_</span></h2>
 
-        <div class="projects">
-            <div class="card">
-                <h3>Inception</h3>
-                <p>Docker infrastructure with NGINX, WordPress and MariaDB running in separate containers.</p>
-            </div>
-            <div class="card">
-                <h3>42 School</h3>
-                <p>Student at 42 Mulhouse learning system administration, algorithms and software development.</p>
-            </div>
-            <div class="card">
-                <h3>Contact</h3>
-                <p>dancel@student.42.fr</p>
-            </div>
+    <nav>
+        <div class="logo">DANCEL <span>FLOUR</span> CO.</div>
+        <div class="nav-links">
+            <a href="#">Products</a>
+            <a href="#">Quality</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
         </div>
+    </nav>
 
-        <div class="footer">
-            BUILT WITH HTML & CSS — HOSTED ON DOCKER
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Premium <span>Wheat Flour</span> from Alsace</h1>
+            <p>
+                Located in the heart of Mulhouse, Dancel Flour Co. has been
+                milling the finest wheat flour since 2013. From our fields
+                to your bakery — quality you can taste in every loaf.
+            </p>
+            <a href="#" class="btn">DISCOVER OUR PRODUCTS</a>
+        </div>
+        <div class="hero-image">🌾</div>
+    </section>
+
+    <div class="stats">
+        <div class="stat">
+            <span class="number">45+</span>
+            <span class="label">YEARS OF EXPERTISE</span>
+        </div>
+        <div class="stat">
+            <span class="number">12</span>
+            <span class="label">COUNTRIES SUPPLIED</span>
+        </div>
+        <div class="stat">
+            <span class="number">500T</span>
+            <span class="label">PRODUCED PER MONTH</span>
+        </div>
+        <div class="stat">
+            <span class="number">100%</span>
+            <span class="label">ALSATIAN WHEAT</span>
         </div>
     </div>
+
+    <section class="section">
+        <h2>OUR PRODUCTS</h2>
+        <p class="subtitle">Milled with precision, delivered with care</p>
+        <div class="products">
+            <div class="product">
+                <span class="emoji">🥖</span>
+                <h3>TYPE 45</h3>
+                <p>Our finest pastry flour. Extra white, ultra-refined.
+                Perfect for croissants, brioches and delicate pastries
+                requiring a smooth, light texture.</p>
+                <span class="badge">PREMIUM</span>
+            </div>
+            <div class="product">
+                <span class="emoji">🍞</span>
+                <h3>TYPE 65</h3>
+                <p>Our classic bread flour. The backbone of every
+                great baguette. Trusted by professional bakers
+                across France and Europe since 2013.</p>
+                <span class="badge">BESTSELLER</span>
+            </div>
+            <div class="product">
+                <span class="emoji">🌾</span>
+                <h3>TYPE 110</h3>
+                <p>Semi-wholemeal flour with rich wheat flavor.
+                Ideal for rustic breads, hearty loaves and
+                health-conscious recipes.</p>
+                <span class="badge">ORGANIC</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-image">🏭</div>
+        <div class="about-text">
+            <h2>ABOUT US</h2>
+            <p>
+                Founded in 2013 in Mulhouse, Dancel Flour Co. started
+                as a small mill on the banks of the Rhine.
+                Today we operate one of the most modern milling
+                facilities in the Grand Est region.
+            </p>
+            <p>
+                Our wheat is sourced exclusively from local Alsatian
+                farms within 50km of our mill. Every batch is tested
+                for protein content, moisture and purity before milling.
+            </p>
+            <p>
+                We supply bakeries, pastry shops, restaurants and
+                industrial producers across 12 countries — always
+                with the same commitment to quality.
+            </p>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>WHAT OUR CLIENTS SAY</h2>
+        <p class="subtitle">Trusted by bakers across Europe</p>
+        <div class="quotes">
+            <div class="quote">
+                <p>"We switched to Dancel Flour Co. three years ago
+                and our croissants have never been better. Our
+                customers notice the difference immediately."</p>
+                <span class="author">— Marie L.</span>
+                <div class="role">Head Baker, Strasbourg</div>
+            </div>
+            <div class="quote">
+                <p>"Consistent quality, reliable delivery, excellent
+                customer service. Exactly what a professional
+                bakery needs from its flour supplier."</p>
+                <span class="author">— Thomas K.</span>
+                <div class="role">Pastry Chef, Basel</div>
+            </div>
+            <div class="quote">
+                <p>"Their Type 65 is simply the best bread flour
+                we have used in 20 years of production.
+                We will not go back."</p>
+                <span class="author">— Henri D.</span>
+                <div class="role">Production Manager, Lyon</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo">DANCEL <span style="color:#c8a400">FLOUR</span> CO.</div>
+        <p>© 2013 Dancel Flour Co. — Mulhouse, Grand Est, France</p>
+        <div class="contact">
+            <p>contact@dancelflour.fr</p>
+            <p>+33 3 89 XX XX XX</p>
+        </div>
+    </footer>
+
 </body>
 </html>
