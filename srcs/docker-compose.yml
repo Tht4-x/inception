@@ -1,9 +1,8 @@
-version: '3.8'
-
 services:
 
   mariadb:
     build: ./requirements/mariadb
+    image: mariadb
     container_name: mariadb
     volumes:
       - db_volume:/var/lib/mysql
@@ -19,6 +18,7 @@ services:
 
   wordpress:
     build: ./requirements/wordpress
+    image: wordpress
     container_name: wordpress
     volumes:
       - wp_volume:/var/www/wordpress
@@ -44,6 +44,7 @@ services:
 
   nginx:
     build: ./requirements/nginx
+    image: nginx
     container_name: nginx
     ports:
       - "443:443"
@@ -57,6 +58,7 @@ services:
 
   static:
     build: ./requirements/bonus/static
+    image: static
     container_name: static
     ports:
       - "80:80"
@@ -66,6 +68,7 @@ services:
 
   adminer:
     build: ./requirements/bonus/adminer
+    image: adminer
     container_name: adminer
     ports:
       - "8080:8080"
@@ -77,6 +80,7 @@ services:
 
   redis:
     build: ./requirements/bonus/redis
+    image: redis
     container_name: redis
     networks:
       - inception_network
@@ -84,6 +88,7 @@ services:
 
   ftp:
     build: ./requirements/bonus/ftp
+    image: ftp
     container_name: ftp
     ports:
       - "21:21"
@@ -102,6 +107,7 @@ services:
 
   netdata:
     build: ./requirements/bonus/netdata
+    image: netdata
     container_name: netdata
     ports:
       - "19999:19999"
